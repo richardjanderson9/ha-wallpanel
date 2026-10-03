@@ -1,6 +1,6 @@
 # Personal Website
 
-The official source code for my personal portfolio and website, hosted live at [wall-pannel.richardjanderson.uk](https://wall-pannel.richardjanderson.uk/).
+The official source code for my personal portfolio and website, hosted live at [wall-panel.richardjanderson.uk](https://wall-panel.richardjanderson.uk/).
 
 ## 🚀 Overview
 
