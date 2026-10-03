@@ -1,0 +1,41 @@
+name: ☁️ Notify Cloudflare Worker
+description: Notify a Cloudflare Worker.
+inputs:
+  worker_url:
+    description: Cloudflare Worker URL. Leave empty to skip the request.
+    required: false
+  worker_token:
+    description: Optional bearer token for the Worker.
+    required: false
+runs:
+  using: composite
+  steps:
+    - name: 📡 Send request to Cloudflare Worker
+      env:
+        CLOUDFLARE_WORKER_URL: ${{ inputs.worker_url }}
+        CLOUDFLARE_WORKER_TOKEN: ${{ inputs.worker_token }}
+      shell: bash
+      run: |
+        set -euo pipefail
+        if [[ -z "$CLOUDFLARE_WORKER_URL" ]]; then
+          echo "Cloudflare Worker URL is not configured; skipping request."
+          exit 0
+        fi
+
+        request_args=(
+          --fail-with-body
+          --silent
+          --show-error
+          --request POST
+          --header "Content-Type: application/json"
+          --data "$(jq -n \
+            --arg repository "$GITHUB_REPOSITORY" \
+            --arg ref "$GITHUB_REF" \
+            --arg sha "$GITHUB_SHA" \
+            '{repository: $repository, ref: $ref, sha: $sha}')"
+        )
+        if [[ -n "$CLOUDFLARE_WORKER_TOKEN" ]]; then
+          request_args+=(--header "Authorization: Bearer $CLOUDFLARE_WORKER_TOKEN")
+        fi
+
+        curl "${request_args[@]}" "$CLOUDFLARE_WORKER_URL"

@@ -3,7 +3,7 @@
   Description: Wall panel section for the personal website.
   Author: Richard Anderson
   Last Updated: 03-October-2026.
-  Version: 1.0.0
+  Version: 1.0.7
 */
 
 // Import React library for creating components.

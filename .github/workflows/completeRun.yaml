@@ -1,0 +1,80 @@
+name: 🚀 Complete build and publish
+
+"on":
+  push:
+    branches:
+      - "**"
+    paths:
+      - "*.css"
+      - "**/*.css"
+      - "*.jsx"
+      - "**/*.jsx"
+      - "*.json"
+      - "**/*.json"
+      - "*.toml"
+      - "**/*.toml"
+      - Dockerfile
+      - "**/Dockerfile"
+      - "*.html"
+      - "**/*.html"
+      - "*.conf"
+      - "**/*.conf"
+      - "*.png"
+      - "**/*.png"
+      - "*.jpg"
+      - "**/*.jpg"
+      - "*.jpeg"
+      - "**/*.jpeg"
+      - "*.gif"
+      - "**/*.gif"
+      - "*.webp"
+      - "**/*.webp"
+      - "*.svg"
+      - "**/*.svg"
+      - "*.ico"
+      - "**/*.ico"
+      - "*.avif"
+      - "**/*.avif"
+      - "*.bmp"
+      - "**/*.bmp"
+      - "*.tif"
+      - "**/*.tif"
+      - "*.tiff"
+      - "**/*.tiff"
+      - "*.heic"
+      - "**/*.heic"
+      - "*.heif"
+      - "**/*.heif"
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-publish:
+    name: 📦 Build and publish container
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Check out repository
+        uses: actions/checkout@v4
+
+      - name: 🔐 Check Vultr authentication
+        uses: ./.github/actions/vultr-auth
+        with:
+          region: ${{ secrets.VULTRCR_REGION }}
+          username: ${{ secrets.VULTRCR_USERNAME }}
+          api_key: ${{ secrets.VULTRCR_APIKEY }}
+
+      - name: 🛡️ Run Trivy checks
+        uses: ./.github/actions/trivy
+
+      - name: 📦 Build container
+        uses: ./.github/actions/build-container
+        with:
+          region: ${{ secrets.VULTRCR_REGION }}
+          registry_name: ${{ secrets.VULTRCR_NAME }}
+
+      - name: ☁️ Notify Cloudflare Worker
+        uses: ./.github/actions/cloudflare-worker
+        with:
+          worker_url: ${{ secrets.CLOUDFLARE_WORKER_URL }}
+          worker_token: ${{ secrets.CLOUDFLARE_WORKER_TOKEN }}

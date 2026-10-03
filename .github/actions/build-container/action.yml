@@ -1,0 +1,38 @@
+name: 📦 Build and publish container
+description: "Build and publish the container."
+inputs:
+  region:
+    description: Vultr Container Registry region.
+    required: true
+  registry_name:
+    description: Vultr Container Registry namespace.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: 🏷️ Set image name
+      id: image
+      shell: bash
+      run: echo "name=${GITHUB_REPOSITORY##*/}" | tr '[:upper:]' '[:lower:]' >> "$GITHUB_OUTPUT"
+
+    - name: 🏷️ Generate image tags
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ inputs.region }}.vultrcr.com/${{ inputs.registry_name }}/${{ steps.image.outputs.name }}
+        tags: |
+          type=sha
+          type=raw,value=latest,enable={{is_default_branch}}
+
+    - name: 🐳 Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: 🚀 Build and push image
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max

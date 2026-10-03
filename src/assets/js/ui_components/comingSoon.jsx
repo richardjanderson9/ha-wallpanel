@@ -3,15 +3,20 @@
   Description: Coming-soon landing section for the personal website.
   Author: Richard Anderson
   Last Updated: 03-October-2026.
-  Version: 1.0.0
+  Version: 1.0.5
 */
 
 // Import React library for creating components.
-import React from 'react';
+import { useLatestCommit } from '../hooks/useLatestCommit.js';
 
 const ComingSoon = () => {
   // Extract GitHub URL from importantLinks data (falling back safely if needed)
-  const githubUrl = "https://github.com/richardjanderson9/ha-wallpanel"; // Hardcoded for now, can be replaced with dynamic data if needed.
+  const repository = { owner: 'richardjanderson9', name: 'ha-wallpanel' };
+  const githubUrl = `https://github.com/${repository.owner}/${repository.name}`;
+  const { latestCommit, commitUnavailable } = useLatestCommit(
+    repository.owner,
+    repository.name
+  );
 
   // Coming Soon Render.
   return (
@@ -31,6 +36,27 @@ const ComingSoon = () => {
       >
         GitHub Repository
       </a>
+
+      <p className="github-last-commit" aria-live="polite">
+        Latest commit: {latestCommit ? (
+          <a
+            href={latestCommit.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <time dateTime={latestCommit.date}>
+              {new Date(latestCommit.date).toLocaleString(undefined, {
+                dateStyle: "medium",
+                timeStyle: "short",
+              })}
+            </time>
+          </a>
+        ) : commitUnavailable ? (
+          "Unavailable"
+        ) : (
+          "Checking..."
+        )}
+      </p>
     </div>
   );
 };

@@ -3,7 +3,7 @@
   Description: Styles for the coming-soon landing page and gradient interface.
   Author: Richard Anderson
   Last Updated: 03-October-2026.
-  Version: 1.0.0
+  Version: 1.0.3
   Note: Includes the full-page layout, animated typography, and CTA styling.
 */
 
@@ -96,6 +96,41 @@
 
 .github-button:hover::before {
   opacity: 1;
+}
+
+.github-last-commit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem 0.45rem;
+  max-width: 100%;
+  margin: 0.85rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.github-last-commit a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration-color: rgba(255, 181, 197, 0.65);
+  text-underline-offset: 0.2em;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.github-last-commit a:hover {
+  color: #ffb5c5;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+.github-last-commit a:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid #ffb5c5;
+  outline-offset: 3px;
 }
 
 /* GitHub SVG Icon Styling */

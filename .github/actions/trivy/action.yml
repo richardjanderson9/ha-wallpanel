@@ -1,0 +1,8 @@
+name: 🛡️ Trivy checks
+description: Placeholder for future Trivy scanning.
+runs:
+  using: composite
+  steps:
+    - name: 🧪 Trivy placeholder
+      shell: bash
+      run: echo "Trivy is not configured yet; this placeholder currently passes."

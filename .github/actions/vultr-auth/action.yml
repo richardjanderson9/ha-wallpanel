@@ -1,0 +1,21 @@
+name: 🔐 Vultr registry authentication
+description: "Vultr registry login."
+inputs:
+  region:
+    description: Vultr Container Registry region.
+    required: true
+  username:
+    description: Vultr Container Registry username.
+    required: true
+  api_key:
+    description: Vultr Container Registry API key.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: 🔐 Log in to Vultr Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ inputs.region }}.vultrcr.com
+        username: ${{ inputs.username }}
+        password: ${{ inputs.api_key }}
