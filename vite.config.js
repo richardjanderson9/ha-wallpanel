@@ -1,10 +1,10 @@
 /*
   Path: vite.config.js
-  Description: Vite configuration file for a React application.
-  Author: Richard Anderson.
-  Last Updated: 13-Sep-2026.
-  Version: 1.1.1
-  Note: Streamlined for simplicity.
+  Description: Vite configuration for the React application build and dev server.
+  Author: Richard Anderson
+  Last Updated: 03-October-2026.
+  Version: 1.0.0
+  Note: Provides the project build and local development settings.
 */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';

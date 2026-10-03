@@ -1,10 +1,10 @@
 /*
   Path: src/index.jsx
-  Description: Entry point for the React application.
-  Author: Richard Anderson.
-  Last Updated: 20-June-2026.
-  Version: 1.1.0.
-  Note: This file contains both AI-generated (Copilot -- Claude 3.7) and manually added comments for code clarity.
+  Description: React bootstrap file that mounts the application root.
+  Author: Richard Anderson
+  Last Updated: 03-October-2026.
+  Version: 1.0.0
+  Note: Initializes the root component for the app render cycle.
 */
 
 // Assets Import! (React!).
@@ -13,9 +13,6 @@ import ReactDOM from 'react-dom/client';
 
 // Assets Import! (Custom React!).
 import App from './app.jsx';
-
-// Assets Import! (Non-React!).
-import './assets/css/index.css';
 
 // Initialize React Root.
 const root = ReactDOM.createRoot(document.getElementById('root'));

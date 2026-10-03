@@ -1,8 +1,9 @@
 /*
   Path: src/assets/js/ui_components/comingSoon.jsx
-  Description: Coming soon section component for the personal website.
-  Author: Richard Anderson.
-  Last Updated: 26-September-2026.
+  Description: Coming-soon landing section for the personal website.
+  Author: Richard Anderson
+  Last Updated: 03-October-2026.
+  Version: 1.0.0
 */
 
 // Import React library for creating components.
@@ -10,7 +11,7 @@ import React from 'react';
 
 const ComingSoon = () => {
   // Extract GitHub URL from importantLinks data (falling back safely if needed)
-  const githubUrl = "https://github.com/richardjanderson9/personalWebsite";
+  const githubUrl = "https://github.com/richardjanderson9/ha-wallpanel"; // Hardcoded for now, can be replaced with dynamic data if needed.
 
   // Coming Soon Render.
   return (

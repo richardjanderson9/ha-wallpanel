@@ -1,10 +1,10 @@
 #
 #  Path: Dockerfile
-#  Description: Multi-stage Docker build for a React/Vite application using Nginx.
-#  Author: Richard Anderson.
-#  Last Updated: 26-Sep-2026.
-#  Version: 1.1.3
-#  Note: Uses dynamic Node 22 and secure pinned Nginx unprivileged Alpine base images.
+#  Description: Multi-stage Docker build for the React/Vite application served by Nginx.
+#  Author: Richard Anderson
+#  Last Updated: 03-October-2026.
+#  Version: 1.0.0
+#  Note: Uses a Node 22 build stage and a secure unprivileged Nginx runtime image.
 #
 
 # ==========================================
