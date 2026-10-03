@@ -1,3 +1,3 @@
-# New Project
+# Security Policy
 
-Still working on this. :)
+This project is currently a local development site and does not yet expose a public-facing production environment.
