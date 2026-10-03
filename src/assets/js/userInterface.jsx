@@ -14,6 +14,7 @@ import '../css/comingSoon.css'; // Styles for the coming soon section component.
 
 // React and JSX Component Imports.
 import ComingSoon from './ui_components/comingSoon.jsx'; // Coming soon section component for the personal website.
+//import WallPanel from './ui_components/wallPanel.jsx'; // Wall panel section component for the personal website.
 
 const UserInterface = () => {
   // Force the app to display the coming-soon view only.
