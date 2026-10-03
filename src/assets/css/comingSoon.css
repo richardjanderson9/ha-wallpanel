@@ -1,0 +1,139 @@
+/*
+  Path: src/assets/css/comingSoon.css
+  Description: Styles for the coming soon page and application layout.
+  Author: Richard Anderson
+  Last Updated: 26-September-2026
+  Version: 1.1.0
+  Note: Full-page black background with animated gradient text and navigation styling.
+*/
+
+/* Full-viewport centred container */
+.coming-soon-wrapper {
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Main heading with animated gradient */
+.coming-soon-heading {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem;
+  
+  /* Gradient styling and animation */
+  background: linear-gradient(270deg, #ff758c, #ff7eb3, #7928ca, #4facfe);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+/* Subtext below the heading with smooth typing effect */
+.coming-soon-sub {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  opacity: 0.8;
+  margin: 0;
+  
+  /* Smooth typing properties */
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 0.05em; /* Adds clean breathing room between letters */
+  border-right: 0.15em solid #ff758c; 
+  
+  /* 47 steps matches the exact character count of the sentence below */
+  animation: typing 3.5s steps(47, end), blink-caret 0.75s step-end infinite;
+  max-width: fit-content;
+}
+
+/* GitHub Button Styling with Gradient Border & Icon */
+.github-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+  padding: 0.85rem 1.75rem;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  font-weight: 500;
+  color: #fff;
+  background: rgba(20, 20, 20, 0.6);
+  border-radius: 12px;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Subtle gradient border effect */
+.github-button::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  background: linear-gradient(270deg, #ff758c, #7928ca, #4facfe);
+  background-size: 300% 300%;
+  z-index: -1;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+/* Hover state enhancement */
+.github-button:hover {
+  transform: translateY(-3px);
+  background: rgba(30, 30, 30, 0.8);
+  box-shadow: 0 12px 40px rgba(121, 40, 202, 0.25);
+}
+
+.github-button:hover::before {
+  opacity: 1;
+}
+
+/* GitHub SVG Icon Styling */
+.github-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Keyframes for the smoother typing reveal */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Keyframes for the blinking cursor */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #ff758c;
+  }
+}
+
+/* Keyframes for smooth colour shifting */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

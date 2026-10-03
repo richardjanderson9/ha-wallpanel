@@ -1,0 +1,3 @@
+# Note: These rules may be overridden by Cloudflare if enabled.
+User-agent: *
+Disallow: /
